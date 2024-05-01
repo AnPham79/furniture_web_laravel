@@ -66,10 +66,10 @@ class InvoiceController extends Controller
         $invoice->status_invoices = InvoiceStatusEnum::CHO_XAC_NHAN;
         $invoice->user_name = request('user_name');
         $invoice->phone_number = request('phone_number');
-        if(session()->has('code')) {
-            if(session()->get('type') == 'fixed') {
+        if (session()->has('code')) {
+            if (session()->get('type') == 'fixed') {
                 $invoice->discount = session()->get('value');
-            } elseif(session()->get('type') == 'percent') {
+            } elseif (session()->get('type') == 'percent') {
                 $invoice->discount = $totalPrice * session()->get('value') / 100;
             }
         } else {
@@ -117,7 +117,7 @@ class InvoiceController extends Controller
     public function orderHistory()
     {
         if (session()->has('id')) {
-            $data = Invoice::where('user_id', session()->get('id'));
+            $data = Invoice::where('user_id', session()->get('id'))->get();
 
             return view('order_history', compact('data'));
         }
@@ -136,7 +136,19 @@ class InvoiceController extends Controller
         return redirect()->back();
     }
 
-    public function changeStatus($id)
+    public function getAllOrderHistory()
     {
+        $data = Invoice::all();
+
+        return view('Order.index', compact('data'));
+    }
+
+    public function changeStatus(Request $request, $id)
+    {
+        $invoice = Invoice::findOrFail($id);
+        $invoice->status_invoices = $request->input('status');
+        $invoice->save();
+
+        return redirect()->back()->with('message', 'Status changed successfully');
     }
 }

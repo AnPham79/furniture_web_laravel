@@ -12,4 +12,14 @@ class InvoiceDetail extends Model
     public function setDateCreated() {
         return $this->created_at->format('d-m-Y');
     }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function invoice()
+    {
+        return $this->belongsTo(Invoice::class);
+    }
 }

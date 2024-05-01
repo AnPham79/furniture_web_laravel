@@ -16,17 +16,28 @@ final class InvoiceStatusEnum extends Enum
     {
         switch ($value) {
             case self::CHO_XAC_NHAN:
-                return 'Chờ xác nhận';
+                return 'Pending confirmation';
             case self::DA_XAC_NHAN:
-                return 'Đã xác nhận';
+                return 'Confirmed';
             case self::DANG_GIAO:
-                return 'Đang giao';
+                return 'Being delivered';
             case self::DA_NHAN:
-                return 'Đã nhận';
+                return 'Received';
             case self::DA_HUY:
-                return 'Đã hủy';
+                return 'Cancelled';
             default:
                 return parent::getDescription($value);
         }
+    }
+
+    public static function toSelectArray(): array
+    {
+        return [
+            self::CHO_XAC_NHAN => self::getDescription(self::CHO_XAC_NHAN),
+            self::DA_XAC_NHAN => self::getDescription(self::DA_XAC_NHAN),
+            self::DANG_GIAO => self::getDescription(self::DANG_GIAO),
+            self::DA_NHAN => self::getDescription(self::DA_NHAN),
+            self::DA_HUY => self::getDescription(self::DA_HUY),
+        ];
     }
 }

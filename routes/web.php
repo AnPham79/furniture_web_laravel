@@ -54,8 +54,12 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => checkLoginMiddleware::class], function () {
     Route::get('/order-history', [InvoiceController::class, 'orderHistory'])->name('order-history');
-    Route::PUT('/change-status/{id}', [InvoiceController::class, 'changeStatus'])->name('change-status');
+    Route::get('/all-order', [InvoiceController::class, 'getAllOrderHistory'])->name('all-order');
     Route::PUT('/cancel-order/{id}', [InvoiceController::class, 'cancelOrder'])->name('cancel-order');
+    Route::get('/order-detail/{id}', [InvoiceDetailController::class, 'orderDetail'])->name('order-detail');
+
+    Route::get('/order-detail-admin/{id}', [InvoiceDetailController::class, 'orderDetailAdmin'])->name('order-detail-admin');
+    Route::put('change-status/{id}', [InvoiceController::class, 'changeStatus'])->name('change-status');
 
     Route::post('/addToCart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
     Route::post('/addToCartInDetail/{id}', [CartController::class, 'addToCartInDetail'])->name('addToCartInDetail');

@@ -132,7 +132,7 @@
                                                     Manager</a></li>
                                             <li><a class="dropdown-item" href="{{ route('Brand.index') }}">Brands
                                                     Manager</a></li>
-                                            <li><a class="dropdown-item" href="{{ route('order-history') }}">Orders
+                                            <li><a class="dropdown-item" href="{{ route('all-order') }}">Orders
                                                     Manager</a></li>
                                             <li>
                                                 <hr class="dropdown-divider">

@@ -12,4 +12,14 @@ class Invoice extends Model
     public $fillable = [
         'status_invoices'
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function setDateCreateOrder()
+    {
+        return $this->created_at->Format('d-m-Y');
+    }
 }
