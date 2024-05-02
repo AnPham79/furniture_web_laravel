@@ -107,9 +107,21 @@
                                         <span class="text-white">Hi: {{ session()->get('name') }}</span>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{ route('order-history') }}">Order
-                                                History</a></li>
-                                        <li><a class="dropdown-item" href="#">Setting</a></li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('order-history') }}">Order
+                                                History
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('change-information') }}">
+                                                Settings
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('change-password') }}">
+                                                Change Password
+                                            </a>
+                                        </li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>

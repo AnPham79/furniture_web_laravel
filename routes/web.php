@@ -58,6 +58,11 @@ Route::group(['middleware' => checkLoginMiddleware::class], function () {
     Route::PUT('/cancel-order/{id}', [InvoiceController::class, 'cancelOrder'])->name('cancel-order');
     Route::get('/order-detail/{id}', [InvoiceDetailController::class, 'orderDetail'])->name('order-detail');
 
+    Route::get('/change-information', [AuthController::class, 'changeInformation'])->name('change-information');
+    Route::put('/process-change-information', [AuthController::class, 'processChangeInformation'])->name('process-change-information');
+    Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
+    Route::put('/process-change-password', [AuthController::class, 'ProcessChangePassword'])->name('process-change-password');
+
     Route::get('/order-detail-admin/{id}', [InvoiceDetailController::class, 'orderDetailAdmin'])->name('order-detail-admin');
     Route::put('change-status/{id}', [InvoiceController::class, 'changeStatus'])->name('change-status');
 
