@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\ThankForRegister;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Queue;
 
 class AuthController extends Controller
 {
@@ -55,19 +56,27 @@ class AuthController extends Controller
         return view('Auth.register');
     }
 
+    // // $data->password = Hash::make($request->password);
+    // sử dụng cái này để mã hóa pass thây vì hash
     public function process_register(UserRequest $request)
-    {
-        $data = new User;
-        // // $data->password = Hash::make($request->password);
-        // sử dụng cái này để mã hóa pass thây vì hash
-        $data->fill($request->except('_token'));
-        $data->password = bcrypt($request->password);
+{
+    $data = new User;
+    $data->fill($request->except('_token'));
+    $data->password = bcrypt($request->password);
+    $data->save();
 
-        Mail::to($request->email)->send(new ThankForRegister($request->name));
-        $data->save();
+    // Lấy dữ liệu cần thiết từ $request
+    $email = $request->email;
+    $name = $request->name;
 
-        return redirect()->route('login');
-    }
+    // Đưa công việc gửi email vào hàng đợi
+    Queue::later(now()->addMinutes(5), function($job) use ($email, $name) {
+        Mail::to($email)->send(new ThankForRegister($name));
+        $job->delete();
+    });
+
+    return redirect()->route('login');
+}
 
     public function logout()
     {

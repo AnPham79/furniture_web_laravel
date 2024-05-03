@@ -28,7 +28,7 @@
                     <form action="{{ route('process_register') }}" class="form-horizontal" method="POST">
                         @csrf
                         <div class="form-group row my-2">
-                            <label for="" class="col-md-4 control-label">nName</label>
+                            <label for="" class="col-md-4 control-label">Name</label>
                             <div class="col-md-8">
                                 <input type="text" placeholder="Your name" name="name" class="form-control input-md"
                                     value="{{ old('name') }}" />
