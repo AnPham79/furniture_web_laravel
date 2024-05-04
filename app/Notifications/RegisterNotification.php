@@ -29,7 +29,7 @@ class RegisterNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'nexmo'];
     }
 
     /**

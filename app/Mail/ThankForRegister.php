@@ -29,6 +29,13 @@ class ThankForRegister extends Mailable
      */
     public function build()
     {
-        return $this->subject('Thư cảm ơn đăng kí - Chào mừng bạn đến Cửa hàng điện thoại Phạm An')->view('Mail.mail');
+        return $this
+        ->from('Anltweb79@gmail.com')
+        // ->to('user@gmail.com')
+        ->subject('Thank you - Wellcome to ANDEV')
+        ->attachFromStorage('app/img/avt/1714637314.jpg')
+        // view tạo giao diện thông thường , hãy dùng markdown để làm giao diện đẹp mặt hơn
+        // ->view('Mail.mail')
+        ->markdown('Mail.mail');
     }
 }

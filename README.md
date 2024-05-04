@@ -29,6 +29,37 @@ MAIL_PORT=465
 MAIL_USERNAME=phamngocbaoan792004@gmail.com
 MAIL_PASSWORD=rldfqcifrfswdmrr
 MAIL_ENCRYPTION=ssl
-MAIL_FROM_ADDRESS=null
-MAIL_FROM_NAME="${APP_NAME}"
+MAIL_FROM_ADDRESS=phamngocbaoan792004@gmail.com
+MAIL_FROM_NAME="Phạm An Admin"
+
+- gửi sms bằng nexmo ( lỗi );
+- queue send mail;
+
+- notification: sen mail
+
+- Events & Listeners
+
+1. Định nghĩa một event
+
+2. Định nghĩa một listener
+
+3. Mapping giữ listener và event: Khai báo cho listener biết cần lắng nghe sự kiện nào
+
+4. Khởi tạo một event
+
+- 2 cách đăg kí 
+
+- Đăng ký trong EventServiceProvider
+
+- Tự đăng ký event (sử dụng helper hoặc facede Laravel cung cấp)
+
+- observer tạo observer bằng cách php artisan make:observer UserObserver --model=User
+- Đăng ký Observer trong phương thức boot của file service provider
+use App\Models\User;
+use App\Observers\UserObserver;
+
+public function boot()
+{
+    User::observe(UserObserver::class);
+}
 
